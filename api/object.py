@@ -1,12 +1,12 @@
 class VKObject(object):
 
-    def __init__(self, data):
+    def __init__(self, object_data):
 
-        if not isinstance(data, dict):
+        if not isinstance(object_data, dict):
             return
 
-        self.dict = data
-        for key, value in data.items():
+        self.object_data = object_data
+        for key, value in object_data.items():
             if isinstance(value, (list, tuple)):
                 setattr(self, key, [VKObject(item) if isinstance(item, dict) else item for item in value])
             else:
@@ -14,7 +14,7 @@ class VKObject(object):
 
     def to_dict(self):
 
-        if not isinstance(self.dict, dict):
+        if not isinstance(self.object_data, dict):
             return
 
-        return self.dict
+        return self.object_data
