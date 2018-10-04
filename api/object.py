@@ -8,7 +8,7 @@ class VKObject(object):
         self.dict = data
         for key, value in data.items():
             if isinstance(value, (list, tuple)):
-                setattr(self, key, [VKObject(data) if isinstance(data, dict) else data for data in value])
+                setattr(self, key, [VKObject(item) if isinstance(item, dict) else item for item in value])
             else:
                 setattr(self, key, VKObject(value) if isinstance(value, dict) else value)
 
